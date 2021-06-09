@@ -9,6 +9,6 @@ const loggerServiceModule =
   process.env.NODE_ENV === "development"
     ? composeWithDevTools(applyMiddleware(thunk, logger))
     : null;
-const store = createStore(rootReducer, loggerServiceModule);
+const store = createStore(rootReducer, loggerServiceModule as any);
 
 export default store;
