@@ -1,18 +1,10 @@
-import { lazy } from 'react';
-import './App.css';
-
-
-const Repository = lazy(()=> import('./page/repository'));
-const Developers = lazy(()=> import('./page/developers'));
-const NotFound = lazy(()=> import('./page/notfound'));
-
+import "./App.css";
+import IndexRouter from "./routes";
 
 function App() {
-  return (
-    <div className="App">
-      {/* repository , user , notFound Page */}
-    </div>
-  );
+  return <div className="App">
+    <IndexRouter/>
+  </div>;
 }
 
 export default App;
