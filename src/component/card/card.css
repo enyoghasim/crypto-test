@@ -29,6 +29,8 @@
   cursor: pointer;
   border: 1px solid #c9d1d930;
   text-decoration: none;
+  transition: 0.3s;
+  font-weight: 600;
 }
 .card-header .left-flex .link.active {
   background: #1f6feb;
