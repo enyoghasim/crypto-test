@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { HOME_ROUTE, DEVELOPERS } from "../../routes/constant";
 import "./card.css";
