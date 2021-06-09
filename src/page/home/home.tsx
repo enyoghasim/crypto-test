@@ -11,7 +11,7 @@ const RepositoryList = ({ match }: any) => {
     <>
       <div className="trendings-page">
         <div className="card-wrapper">
-          <Card />
+          <Card match={match} />
         </div>
       </div>
     </>

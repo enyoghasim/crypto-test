@@ -1,2 +1,2 @@
-export const DEVELOPERS = '/';
-export const HOME_REPOSITORIES = '/repositories';
+export const HOME_ROUTE = "/";
+export const DEVELOPERS = "/developers";
