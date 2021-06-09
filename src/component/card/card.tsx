@@ -33,6 +33,7 @@ const Card = ({ match }: any) => {
             <span>jdwiei</span>
           </div>
         </div>
+        <div className="mini-cards"></div>
       </div>
     </>
   );
