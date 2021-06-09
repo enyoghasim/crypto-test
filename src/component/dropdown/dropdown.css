@@ -17,7 +17,8 @@
   background-color: transparent;
   border: 0;
   padding-right: 15px;
-  padding-left: 15px;
+  padding-left: 0px;
+  margin: 0.34rem 0px;
 }
 
 .btn-link:after {

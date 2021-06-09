@@ -12,7 +12,7 @@ const Card = ({ match }: any) => {
             <Link
               to={HOME_ROUTE}
               className={`${
-                match.path === "/" ? "active left link" : "left link"
+                match.path === HOME_ROUTE ? "active left link" : "left link"
               }`}
             >
               Repositories
@@ -20,7 +20,7 @@ const Card = ({ match }: any) => {
             <Link
               to={DEVELOPERS}
               className={`${
-                match.path.includes(DEVELOPERS)
+                match.path === (DEVELOPERS)
                   ? "active right link"
                   : "right link"
               }`}

@@ -13,7 +13,7 @@ const IndexRouter: React.FC = (): ReactElement => {
         <Switch>
           <Route path={HOME_ROUTE} exact component={Home} />
           <Route path={DEVELOPERS} exact component={Home} />
-          <Route path="*" component={NotFound} />
+          <Route component={NotFound} />
         </Switch>
       </Suspense>
     </Router>

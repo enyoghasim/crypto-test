@@ -7,6 +7,7 @@ const RepositoryList = ({ match }: any) => {
   useEffect(() => {
     scrapeUrl();
   }, []);
+  
   return (
     <>
       <div className="trendings-page">
