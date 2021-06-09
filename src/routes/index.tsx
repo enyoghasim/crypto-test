@@ -3,8 +3,8 @@ import { Router, Route, Switch } from "react-router-dom";
 import history from "../utility/history";
 import { DEVELOPERS, HOME_REPOSITORIES } from "./constant";
 
-const Home = lazy(() => import("../page/home"));
-const NotFound = lazy(() => import("../page/notfound"));
+const Home = lazy(() => import("../page/home/home"));
+const NotFound = lazy(() => import("../page/notfound/notfound"));
 
 const IndexRouter: React.FC = (): ReactElement => {
   return (
