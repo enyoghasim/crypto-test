@@ -13,8 +13,42 @@ const Dropdown = () => {
           <span className="text-bold">Any</span>
         </summary>
         <section className="option-select-dropdown">
-            <div></div>
-            <div></div>
+          <div className="option-select-item">Afar</div>
+          <div className="option-select-item-search">
+            <input
+              type="text"
+              placeholder="Filter spoken languages"
+              className="search-drop-down"
+            />
+          </div>
+          <div className="select-menu-list">
+            <div className="option-select-item">Afar</div>
+            <div className="option-select-item">Anhar</div>
+            <div className="option-select-item">Arabic</div>
+            <div className="option-select-item">Argonose</div>
+            <div className="option-select-item">Afar</div>
+            <div className="option-select-item">Argonose</div>
+            <div className="option-select-item">Afar</div>
+            <div className="option-select-item">Argonose</div>
+            <div className="option-select-item">Afar</div>
+            <div className="option-select-item">Argonose</div>
+            <div className="option-select-item">Afar</div>
+            <div className="option-select-item">Argonose</div>
+            <div className="option-select-item">Afar</div>
+            <div className="option-select-item">Afar</div>
+            <div className="option-select-item">Anhar</div>
+            <div className="option-select-item">Arabic</div>
+            <div className="option-select-item">Argonose</div>
+            <div className="option-select-item">Afar</div>
+            <div className="option-select-item">Argonose</div>
+            <div className="option-select-item">Afar</div>
+            <div className="option-select-item">Argonose</div>
+            <div className="option-select-item">Afar</div>
+            <div className="option-select-item">Argonose</div>
+            <div className="option-select-item">Afar</div>
+            <div className="option-select-item">Argonose</div>
+            <div className="option-select-item">Afar</div>
+          </div>
         </section>
       </details>
     </>
