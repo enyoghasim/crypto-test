@@ -24,7 +24,7 @@ const Card = ({ match, fetchEnums, getAllEnums }: any) => {
             <Link
               to={HOME_ROUTE}
               className={`${
-                match.path.includes(`${HOME_ROUTE}`)
+                match.path.includes(DEVELOPERS) === false
                   ? "active left link"
                   : "left link"
               }`}
@@ -34,7 +34,9 @@ const Card = ({ match, fetchEnums, getAllEnums }: any) => {
             <Link
               to={DEVELOPERS}
               className={`${
-                match.path === DEVELOPERS ? "active right link" : "right link"
+                match.path.includes(DEVELOPERS)
+                  ? "active right link"
+                  : "right link"
               }`}
             >
               Developers
