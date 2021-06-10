@@ -17,6 +17,10 @@
   position: relative;
   max-height: 200px;
   overflow: auto;
+  display: flex;
+  align-items: inherit;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 .btn-link {
@@ -152,13 +156,14 @@
     right: 16px !important;
   }
 
-  .option-select-item{
+  .option-select-item {
     padding-top: 16px;
     padding-bottom: 16px;
     padding-left: 40px;
   }
 
-  .option-select-item-search, .option-select-header{
+  .option-select-item-search,
+  .option-select-header {
     padding: 16px;
     border-top-left-radius: inherit;
     border-top-right-radius: inherit;
@@ -166,8 +171,7 @@
 
   .select-menu-list {
     position: relative;
-    max-height:100% !important;
+    max-height: 100% !important;
     overflow: auto;
-}
-
+  }
 }

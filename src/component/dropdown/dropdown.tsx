@@ -1,4 +1,8 @@
+//TODO comeback to this file
+
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { DEVELOPERS } from "../../routes/constant";
 import "./dropdown.css";
 const Dropdown = ({
   headerText,
@@ -6,7 +10,12 @@ const Dropdown = ({
   searchTitle,
   inputPlaceholder,
   flag,
-  withInput = true
+  withInput = true,
+  type = "",
+  proLang = "Any",
+  spokenLang = "Any",
+  time = "Any",
+  match
 }: any) => {
   const [filteredArray, setfilteredArray] = useState(data);
 
@@ -49,9 +58,53 @@ const Dropdown = ({
             {filteredArray?.length ? (
               filteredArray?.map((item: any, index: any) => {
                 return (
-                  <div key={index} className="option-select-item">
+                  <Link
+                    to={`${
+                      flag?.length > 2
+                        ? `?${
+                            time === "Any" || time === undefined
+                              ? ""
+                              : `since=${time}`
+                          }&spoken_language=${item.urlParam}`
+                        : type === "date"
+                        ? `?${
+                            spokenLang === "Any" || spokenLang === undefined
+                              ? ""
+                              : `spoken_language=${spokenLang}`
+                          }&time=${item}`
+                        : type === "pro-lang"
+                        ? `${
+                            match.path.includes(DEVELOPERS)
+                              ? `/developers${
+                                  proLang === "Any" || undefined
+                                    ? ""
+                                    : `/${proLang}`
+                                }?${
+                                  time === "Any" || undefined
+                                    ? ""
+                                    : `&since=${time}`
+                                }${
+                                  spokenLang === "Any" || undefined
+                                    ? ""
+                                    : `&spoken_language=${spokenLang}`
+                                }`
+                              : `/developers/${proLang}?${
+                                  time === "Any" || undefined
+                                    ? ""
+                                    : `&since=${time}`
+                                }${
+                                  spokenLang === "Any" || undefined
+                                    ? ""
+                                    : `&spoken_language=${spokenLang}`
+                                }`
+                          }`
+                        : ""
+                    }`}
+                    key={index}
+                    className="option-select-item"
+                  >
                     {`${flag?.length > 2 ? item.name : item}`}
-                  </div>
+                  </Link>
                 );
               })
             ) : (

@@ -1,4 +1,4 @@
-import { useEffect, useState, Children } from "react";
+import { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Dropdown from "../../dropdown/dropdown";
 import { connect } from "react-redux";
@@ -15,39 +15,9 @@ const Card = ({ match, fetchEnums, getAllEnums, children }: any) => {
     return new URLSearchParams(useLocation().search);
   };
   const query = useQuery();
-
-  // const [programmingLanguage, setProgrammingLanguage] = useState(
-  //   filterProgramingLanguage?.length ? filterProgramingLanguage[0] : "Any"
-  // );
-  // const [since, setSince] = useState(
-  //   filterSince?.length ? filterSince[0] : "Any"
-  // );
-
-  // const [spokenLanguage, setSpokenLanguage] = useState(
-  //   filterLanguage?.length ? filterLanguage[0] : "Any"
-  // );
-
   useEffect(() => {
     const fetcher = async () => {
       await fetchEnums();
-      // const filterProgramingLanguage =
-      //   getAllEnums?.allowedProgrammingLanguages?.filter((pv: any) =>
-      //     pv.toLowerCase().includes(match?.params?.language?.toLowerCase())
-      //   );
-      const filterSince = getAllEnums?.allowedDates?.filter((pv: any) =>
-        pv.toLowerCase().includes(query.get("since")?.toLowerCase())
-      );
-
-      // const filterLanguage = spokenLanguages?.filter((pv: any) =>
-      //   pv?.length
-      //     ? pv
-      //         .toLowerCase()
-      //         .includes(query.get("spoken_language_code")?.toLowerCase())
-      //     : ""
-      // );
-      console.log(filterSince);
-
-      // console.log(programmingLanguage, since, spokenLanguage);
     };
     fetcher();
   }, []);
@@ -82,28 +52,54 @@ const Card = ({ match, fetchEnums, getAllEnums, children }: any) => {
           <div className="dropdown-links">
             <span>
               <Dropdown
+                type="spoken-lang"
                 headerText="Spoken Language"
                 searchTitle="Select a spoken language"
                 inputPlaceholder="Filter spoken languages"
                 flag="spoken"
                 data={spokenLanguages}
+                proLang={match.params.language}
+                spokenLang={
+                  query.get("spoken_language") !== null
+                    ? query.get("spoken_language")
+                    : "Any"
+                }
+                time={query.get("since") !== null ? query.get("since") : "Any"}
               />
             </span>
             <span>
               <Dropdown
+                match={match}
+                type="pro-lang"
                 headerText="Select a language"
                 searchTitle="Language"
                 inputPlaceholder="Filter languages"
                 data={getAllEnums?.allowedProgrammingLanguages}
+                proLang={match.params.language}
+                spokenLang={
+                  query.get("spoken_language") !== null
+                    ? query.get("spoken_language")
+                    : "Any"
+                }
+                time={query.get("since") !== null ? query.get("since") : "Any"}
               />
             </span>
             <span>
               <Dropdown
+                match={match}
+                type="date"
                 headerText="Date range"
                 searchTitle="Adjust time span"
                 inputPlaceholder="hi"
                 data={getAllEnums?.allowedDates}
                 withInput={false}
+                proLang={match.params.language}
+                spokenLang={
+                  query.get("spoken_language") !== null
+                    ? query.get("spoken_language")
+                    : "Any"
+                }
+                time={query.get("since") !== null ? query.get("since") : "Any"}
               />
             </span>
           </div>
