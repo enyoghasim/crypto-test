@@ -1,11 +1,6 @@
 import "./button.css";
 
-const InputButton = ({
-  customClass,
-  children,
-  withChildren,
-  innerText
-}: any) => {
+const InputButton = ({ customClass, children }: any) => {
   return (
     <>
       <button
@@ -16,8 +11,7 @@ const InputButton = ({
         aria-label="Unstar this repository"
         title="Star"
       >
-        {!withChildren && innerText}
-        {withChildren && children}
+        {children}
       </button>
     </>
     // <span data-view-component="true" className="d-none d-md-inline">
