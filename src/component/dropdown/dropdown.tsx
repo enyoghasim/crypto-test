@@ -1,8 +1,8 @@
 import "./dropdown.css";
 
-const DetailsMenu = () => {
-  return <></>;
-};
+// const DetailsMenu = () => {
+//   return <></>;
+// };
 
 const Dropdown = () => {
   return (
