@@ -4,11 +4,12 @@ import { useEffect } from "react";
 import { connect } from "react-redux";
 import { getEnums } from "../../redux/thunk";
 import { HOME_ROUTE, DEVELOPERS } from "../../routes/constant";
-import spokenLanguages from "./spoken_languages";
+import spokenLanguages from "../../api.service/spoken_languages";
 
 import "./card.css";
 
 const Card = ({ match, fetchEnums, getAllEnums }: any) => {
+  // get enums language and date
   useEffect(() => {
     const fetcher = async () => {
       await fetchEnums();
@@ -16,6 +17,8 @@ const Card = ({ match, fetchEnums, getAllEnums }: any) => {
     };
     fetcher();
   }, []);
+
+  // 
   return (
     <>
       <div className="card-container">
@@ -78,13 +81,13 @@ const Card = ({ match, fetchEnums, getAllEnums }: any) => {
 };
 const mapStateToProps = (state: any) => {
   return {
-    getAllEnums: state.enumReducer.enums
+    getAllEnums: state.enumReducer.enums,
   };
 };
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    fetchEnums: () => dispatch(getEnums())
+    fetchEnums: () => dispatch(getEnums()),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Card);
