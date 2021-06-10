@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Dropdown from "../dropdown/dropdown";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { getEnums } from "../../redux/thunk";
 import { HOME_ROUTE, DEVELOPERS } from "../../routes/constant";
@@ -10,15 +10,53 @@ import "./card.css";
 
 const Card = ({ match, fetchEnums, getAllEnums }: any) => {
   // get enums language and date
+  console.log(match.params.language);
+
+  const useQuery = () => {
+    return new URLSearchParams(useLocation().search);
+  };
+  const query = useQuery();
+
+  const filterProgramingLanguage =
+    getAllEnums?.allowedProgrammingLanguage?.filter((pv: any) =>
+      pv?.length
+        ? pv.toLowerCase().includes(match.params.language.toLowerCase())
+        : ""
+    );
+  const filterSince = getAllEnums?.allowedDates?.filter((pv: any) =>
+    pv?.length
+      ? pv.toLowerCase().includes(query.get("since")?.toLowerCase())
+      : ""
+  );
+
+  const filterLanguage = spokenLanguages?.filter((pv: any) =>
+    pv?.length
+      ? pv
+          .toLowerCase()
+          .includes(query.get("spoken_language_code")?.toLowerCase())
+      : ""
+  );
+
+  const [programmingLanguage, setProgrammingLanguage] = useState(
+    filterProgramingLanguage?.length ? filterProgramingLanguage[0] : "Any"
+  );
+  const [since, setSince] = useState(
+    filterSince?.length ? filterSince[0] : "Any"
+  );
+
+  const [spokenLanguage, setSpokenLanguage] = useState(
+    filterLanguage?.length ? filterLanguage[0] : "Any"
+  );
+
   useEffect(() => {
     const fetcher = async () => {
       await fetchEnums();
-      console.log(match);
+      console.log(programmingLanguage, since, spokenLanguage);
     };
     fetcher();
   }, []);
 
-  // 
+  //
   return (
     <>
       <div className="card-container">
@@ -81,13 +119,13 @@ const Card = ({ match, fetchEnums, getAllEnums }: any) => {
 };
 const mapStateToProps = (state: any) => {
   return {
-    getAllEnums: state.enumReducer.enums,
+    getAllEnums: state.enumReducer.enums
   };
 };
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    fetchEnums: () => dispatch(getEnums()),
+    fetchEnums: () => dispatch(getEnums())
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Card);
