@@ -13,7 +13,6 @@ const NotFound = lazy(() => import("../page/notfound/notfound"));
 
 const IndexRouter: React.FC = (props): ReactElement => {
   return (
-    <Router history={history}>
       <Suspense fallback={<p>Loading...</p>}>
         <Switch>
           <Route
@@ -40,7 +39,6 @@ const IndexRouter: React.FC = (props): ReactElement => {
           <Route component={NotFound} />
         </Switch>
       </Suspense>
-    </Router>
   );
 };
 
