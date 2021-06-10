@@ -34,6 +34,19 @@
   margin: 0.34rem 0px;
 }
 
+.details-option[open] > summary:before {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 80;
+  display: block;
+  cursor: default;
+  content: " ";
+  background: transparent;
+}
+
 .btn-link:after {
   display: inline-block;
   width: 0;
@@ -54,14 +67,15 @@
   font-size: 12px;
   background-clip: padding-box;
   border-radius: 6px;
-  max-width: 300px;
+  max-width: auto;
   background: #161b22;
   border: 1px solid #23282f;
   z-index: 99;
 }
 
 .option-select-header {
-  padding: 8px 8px 8px 30px;
+  font-weight: 600;
+  padding: 8px 10px;
   line-height: 16px;
   text-align: left;
   border-top: 0;
@@ -123,4 +137,37 @@
   border: 1px solid #4d4f50;
   border-radius: 6px;
   outline: none;
+}
+
+@media only screen and (max-width: 767px) {
+  .option-select-dropdown {
+    position: fixed !important;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    width: auto;
+    height: 80%;
+    top: 75px;
+    left: 16px;
+    right: 16px !important;
+  }
+
+  .option-select-item{
+    padding-top: 16px;
+    padding-bottom: 16px;
+    padding-left: 40px;
+  }
+
+  .option-select-item-search, .option-select-header{
+    padding: 16px;
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+  }
+
+  .select-menu-list {
+    position: relative;
+    max-height:100% !important;
+    overflow: auto;
+}
+
 }
