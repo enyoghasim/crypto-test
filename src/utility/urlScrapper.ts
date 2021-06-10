@@ -1,8 +1,14 @@
 import request from "../api.service/axios.factory";
 
-const scrapeUrl = () => {
-  const data = request("GET", "/openapi.json", "");
-  console.log(data);
-}
+const scrapeUrl = async () => {
+  const { data }: any = await request("GET", "/openapi.json", "");
+  const schema = data.components.schemas;
+  const scrappedData = {
+    allowedDates: schema.AllowedDateRanges.enum,
+    allowedProgrammingLanguages: schema.AllowedProgrammingLanguages.enum,
+    allowedSpokenLanguages: schema.AllowedSpokenLanguages.enum
+  };
+  console.log(scrappedData);
+};
 
 export default scrapeUrl;
