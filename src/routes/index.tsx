@@ -1,7 +1,12 @@
 import React, { ReactElement, Suspense, lazy } from "react";
 import { Router, Route, Switch } from "react-router-dom";
 import history from "../utility/history";
-import { HOME_ROUTE, DEVELOPERS } from "./constant";
+import {
+  HOME_ROUTE,
+  DEVELOPERS,
+  REPO_LANGUAGE_FILTER,
+  DEVELOPER_LANGUAGE_FILTER
+} from "./constant";
 
 const Home = lazy(() => import("../page/home/home"));
 const NotFound = lazy(() => import("../page/notfound/notfound"));
@@ -19,6 +24,16 @@ const IndexRouter: React.FC = (props): ReactElement => {
 
           <Route
             path={DEVELOPERS}
+            exact
+            component={(props: any) => <Home {...props} />}
+          />
+          <Route
+            path={REPO_LANGUAGE_FILTER}
+            exact
+            component={(props: any) => <Home {...props} />}
+          />
+          <Route
+            path={DEVELOPER_LANGUAGE_FILTER}
             exact
             component={(props: any) => <Home {...props} />}
           />

@@ -1,7 +1,7 @@
-import "./App.css";
 import IndexRouter from "./routes/index";
 
-function App() {
+import "./App.css";
+function App(props: any) {
   return (
     <div className="App">
       <div className="top-barner">

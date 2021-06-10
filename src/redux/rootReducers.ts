@@ -1,5 +1,8 @@
 import { combineReducers } from "redux";
+import enumReducer from "./reducer";
 
-const rootReducer = combineReducers({});
+const rootReducer = combineReducers({
+  enumReducer
+});
 
 export default rootReducer;

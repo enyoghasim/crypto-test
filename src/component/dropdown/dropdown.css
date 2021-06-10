@@ -15,7 +15,7 @@
 }
 .select-menu-list {
   position: relative;
-  max-height: 400px;
+  max-height: 200px;
   overflow: auto;
 }
 
@@ -58,10 +58,9 @@
   background: #161b22;
   border: 1px solid #23282f;
   z-index: 99;
-  cursor: pointer;
 }
 
-.option-select-item {
+.option-select-header {
   padding: 8px 8px 8px 30px;
   line-height: 16px;
   text-align: left;
@@ -69,6 +68,28 @@
   border-right: 0;
   border-left: 0;
   border-bottom: 1px solid #30363d;
+}
+.warn-text {
+  cursor: pointer;
+  padding: 1rem;
+  line-height: 16px;
+  text-align: center;
+  border-top: 0;
+  border-right: 0;
+  border-left: 0;
+}
+.option-select-item {
+  cursor: pointer;
+  padding: 8px 8px 8px 30px;
+  line-height: 16px;
+  text-align: left;
+  border-top: 0;
+  border-right: 0;
+  border-left: 0;
+  border-bottom: 1px solid #30363d;
+}
+.option-select-item::first-letter {
+  text-transform: uppercase;
 }
 
 .option-select-item:hover {
