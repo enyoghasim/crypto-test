@@ -1,4 +1,6 @@
-import Card from "../../component/card/card";
+import Card from "../../component/card/bg-board-card/card";
+import ListCard from "../../component/card/sm-list-card/card";
+
 import "./home.css";
 
 const RepositoryList = ({ match }: any) => {
@@ -6,7 +8,9 @@ const RepositoryList = ({ match }: any) => {
     <>
       <div className="trendings-page">
         <div className="card-wrapper">
-          <Card match={match} />
+          <Card match={match} >
+            <ListCard/>
+          </Card>
         </div>
       </div>
     </>

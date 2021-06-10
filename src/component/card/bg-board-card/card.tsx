@@ -1,19 +1,18 @@
 import { Link } from "react-router-dom";
-import Dropdown from "../dropdown/dropdown";
-import { useEffect } from "react";
+import Dropdown from "../../dropdown/dropdown";
+import { Children, useEffect } from "react";
 import { connect } from "react-redux";
-import { getEnums } from "../../redux/thunk";
-import { HOME_ROUTE, DEVELOPERS } from "../../routes/constant";
-import spokenLanguages from "../../api.service/spoken_languages";
+import { getEnums } from "../../../redux/thunk";
+import { HOME_ROUTE, DEVELOPERS } from "../../../routes/constant";
+import spokenLanguages from "../../../api.service/spoken_languages";
 
 import "./card.css";
 
-const Card = ({ match, fetchEnums, getAllEnums }: any) => {
+const Card = ({ match, fetchEnums, getAllEnums, children }: any) => {
   // get enums language and date
   useEffect(() => {
     const fetcher = async () => {
       await fetchEnums();
-      console.log(match);
     };
     fetcher();
   }, []);
@@ -27,7 +26,7 @@ const Card = ({ match, fetchEnums, getAllEnums }: any) => {
             <Link
               to={HOME_ROUTE}
               className={`${
-                match.path.includes(DEVELOPERS) === false
+                (!match.path.includes(DEVELOPERS))
                   ? "active left link"
                   : "left link"
               }`}
@@ -74,7 +73,10 @@ const Card = ({ match, fetchEnums, getAllEnums }: any) => {
             </span>
           </div>
         </div>
-        <div className="mini-cards"></div>
+        <main className="card-holder-body-wrapper">
+          {/* childern for other list card component */}
+          {children}
+        </main>
       </div>
     </>
   );
