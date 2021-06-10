@@ -8,7 +8,7 @@ const scrapeUrl = async () => {
     allowedProgrammingLanguages: schema.AllowedProgrammingLanguages.enum,
     allowedSpokenLanguages: schema.AllowedSpokenLanguages.enum
   };
-  console.log(scrappedData);
+  return scrappedData;
 };
 
 export default scrapeUrl;
