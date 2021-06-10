@@ -1,4 +1,6 @@
-const spokenLanguages = [
+import { spokenLanguage } from "./spoken_languages.td";
+
+const spokenLanguages:Array<spokenLanguage> = [
   {
     urlParam: "ab",
     name: "Abkhazian"
