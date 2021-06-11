@@ -2,34 +2,23 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { DEVELOPERS } from "../../routes/constant";
 import "./dropdown.css";
-const Dropdown = ({
-  headerText,
-  data,
-  searchTitle,
-  inputPlaceholder,
-  flag,
-  withInput = true,
-  type = "",
-  proLang = "Any",
-  spokenLang = "Any",
-  time = "Any",
-  match,
-  boldText
-}: any) => {
-  const [filteredArray, setfilteredArray] = useState(data);
+const Dropdown = (props: any) => {
+  console.log("props,", props);
+
+  const [filteredArray, setfilteredArray] = useState(props.data);
 
   useEffect(() => {
-    setfilteredArray(data);
-  }, [data]);
+    setfilteredArray(props.data);
+  }, [props.data]);
   const handleInput = (e: any) => {
-    if (flag === null || flag === undefined) {
-      const filter = data.filter((element: any) =>
+    if (props.flag === null || props.flag === undefined) {
+      const filter = props.data.filter((element: any) =>
         element.toLowerCase().includes(e.target.value.toLowerCase())
       );
       setfilteredArray(filter);
       return;
     }
-    const filter = data.filter((element: any) =>
+    const filter = props.data.filter((element: any) =>
       element.name.toLowerCase().includes(e.target.value.toLowerCase())
     );
     setfilteredArray(filter);
@@ -38,17 +27,17 @@ const Dropdown = ({
     <>
       <details className="details-option">
         <summary className=" btn-link" role="button">
-          <span className="txt-inner-opt">{headerText}:</span>
-          <span className="text-bold">{boldText}</span>
+          <span className="txt-inner-opt">{props.headerText || "Any"}:</span>
+          <span className="text-bold">{props.boldText}</span>
         </summary>
         <section className="option-select-dropdown">
-          <div className="option-select-header">{searchTitle}</div>
-          {withInput && (
+          <div className="option-select-header">{props.searchTitle}</div>
+          {props.withInput && (
             <div className="option-select-item-search">
               <input
                 type="text"
                 onInput={handleInput}
-                placeholder={inputPlaceholder}
+                placeholder={props.inputPlaceholder}
                 className="search-drop-down"
               />
             </div>
@@ -59,44 +48,48 @@ const Dropdown = ({
                 return (
                   <Link
                     to={`${
-                      flag?.length > 2
+                      props.flag?.length > 2
                         ? `?${
-                            time === "Any" || time === undefined
+                            props.time === "Any" || props.time === undefined
                               ? ""
-                              : `since=${time}`
+                              : `since=${props.time}`
                           }&spoken_language=${item.urlParam}`
-                        : type === "date"
+                        : props.type === "date"
                         ? `?${
-                            spokenLang === "Any" || spokenLang === undefined
+                            props?.spokenLang.includes("Any") ||
+                            !props.spokenLang
                               ? ""
-                              : `spoken_language=${spokenLang}`
+                              : `spoken_language=${props.spokenLang}`
                           }&since=${item}`
-                        : type === "pro-lang"
+                        : props.type === "pro-lang"
                         ? `${
-                            match.path.includes(DEVELOPERS)
+                            props?.path?.includes(DEVELOPERS)
                               ? `/developers${
-                                  proLang === "Any" || proLang === undefined
+                                  props?.proLang.includes("Any") ||
+                                  !props.proLang
                                     ? ""
-                                    : `/${proLang}`
+                                    : `/${props?.proLang}`
                                 }?${
-                                  time === "Any" || time === undefined
+                                  props.time === "Any" ||
+                                  props.time === undefined
                                     ? ""
-                                    : `&since=${time}`
+                                    : `&since=${props.time}`
                                 }${
-                                  spokenLang === "Any" ||
-                                  spokenLang === undefined
+                                  props.spokenLang === "Any" ||
+                                  props.spokenLang === undefined
                                     ? ""
-                                    : `&spoken_language=${spokenLang}`
+                                    : `&spoken_language=${props.spokenLang}`
                                 }`
-                              : `/developers/${proLang}?${
-                                  time === "Any" || time === undefined
+                              : `/developers/${props.proLang}?${
+                                  props.time === "Any" ||
+                                  props.time === undefined
                                     ? ""
-                                    : `&since=${time}`
+                                    : `&since=${props.time}`
                                 }${
-                                  spokenLang === "Any" ||
-                                  spokenLang === undefined
+                                  props.spokenLang === "Any" ||
+                                  props.spokenLang === undefined
                                     ? ""
-                                    : `&spoken_language=${spokenLang}`
+                                    : `&spoken_language=${props.spokenLang}`
                                 }`
                           }`
                         : ""
@@ -104,7 +97,7 @@ const Dropdown = ({
                     key={index}
                     className="option-select-item"
                   >
-                    {`${flag?.length > 2 ? item.name : item}`}
+                    {`${props.flag?.length > 2 ? item.name : item}`}
                   </Link>
                 );
               })
