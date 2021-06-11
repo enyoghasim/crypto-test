@@ -81,7 +81,8 @@
   border-radius: 6px;
   appearance: none;
   color: #24292e;
-  background-color: #fafbfc;
+  background-color: #30363d;
+  color: var(--dark-mode-font-color);
   border-color: #1b1f2326;
   box-shadow: var(--color-btn-shadow), var(--color-btn-inset-shadow);
   transition: 0.2s cubic-bezier(0.3, 0, 0.5, 1);
