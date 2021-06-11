@@ -1,11 +1,11 @@
 import Card from "../../component/card/bg-board-card/card";
 import { useQuery } from "react-query";
 import ListCardRepository from "../../component/card/sm-list-card-repository/card";
-import ListCardDevelopers from "../../component/card/sm-list-card-developer/card";
 import { useLocation } from "react-router";
 import request from "../../api.service/axios.factory";
 import { DEVELOPERS } from "../../routes/constant";
 import "./home.css";
+import { useEffect } from "react";
 
 const Home = ({ match }: any) => {
   const useQueryParams = () => {
@@ -36,13 +36,18 @@ const Home = ({ match }: any) => {
     );
     return data;
   };
+  const since = query.get("since");
+  const lang = query.get("spoken_language");
   const { data, isLoading, isError, isSuccess }: any = useQuery("dev", func);
+  useEffect(() => {
+    console.log(match.url);
+  }, [match.url, lang, since]);
+
   return (
     <>
       <div className="trendings-page">
         <div className="card-wrapper">
           <Card {...match}>
-
             {isLoading && (
               <div className="loading">
                 <section className="on-success-is-loading-state">
@@ -51,12 +56,10 @@ const Home = ({ match }: any) => {
               </div>
             )}
 
-
             {isSuccess &&
               data.map((item: any, index: any) => (
                 <ListCardRepository {...item} key={index} />
               ))}
-              
 
             {isError && (
               <div className="error">

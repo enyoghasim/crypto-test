@@ -8,8 +8,6 @@ import spokenLanguages from "../../../api.service/spoken_languages";
 import "./card.css";
 
 const Card = (props: any) => {
-  console.log("card - props", typeof props.params.language);
-
   const useQueryParams = () => {
     return new URLSearchParams(useLocation().search);
   };
@@ -57,6 +55,7 @@ const Card = (props: any) => {
                   inputPlaceholder="Filter spoken languages"
                   flag="spoken"
                   data={spokenLanguages}
+                  withInput={true}
                   proLang={props?.params?.language}
                   boldText={
                     spokenLanguages.filter(
@@ -86,6 +85,7 @@ const Card = (props: any) => {
                 inputPlaceholder="Filter languages"
                 data={props?.getAllEnums?.allowedProgrammingLanguages}
                 proLang={props?.params?.language}
+                withInput={true}
                 boldText={
                   props?.params?.language ? props?.params?.language : "Any"
                 }
