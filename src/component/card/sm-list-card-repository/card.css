@@ -35,6 +35,10 @@
 .float-sm-right {
   margin-right: 0px;
 }
+/* btn font weight */
+.d-none{
+  font-weight: 500;
+}
 
 .avatar-user {
   border-radius: 100%;
