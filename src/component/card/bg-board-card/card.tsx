@@ -1,20 +1,45 @@
 import { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useQuery } from "react-query";
 import Dropdown from "../../dropdown/dropdown";
+import ListCardRepository from "../sm-list-card-repository/card";
 import { connect } from "react-redux";
 import { getEnums } from "../../../redux/thunk";
 import { HOME_ROUTE, DEVELOPERS } from "../../../routes/constant";
 import spokenLanguages from "../../../api.service/spoken_languages";
-
+import request from "../../../api.service/axios.factory";
 import "./card.css";
 
 const Card = ({ match, fetchEnums, getAllEnums, children }: any) => {
-  // get enums language and date
-
-  const useQuery = () => {
+  const useQueryParams = () => {
     return new URLSearchParams(useLocation().search);
   };
-  const query = useQuery();
+  const query = useQueryParams();
+  const func = async () => {
+    const { data } = await request(
+      "GET",
+      `${
+        match.path.includes(DEVELOPERS)
+          ? `/developers${
+              match.params.language ? `/${match.params.language}` : ""
+            }?${query.get("since") ? `&since=${query.get("since")}` : ""}${
+              query.get("spoken_language_code")
+                ? `&spoken_language_code=${query.get("spoken_language_code")}`
+                : ""
+            }`
+          : `/repositories${
+              match.params.language ? `/${match.params.language}` : ""
+            }?${query.get("since") ? `&since=${query.get("since")}` : ""}${
+              query.get("spoken_language_code")
+                ? `&spoken_language_code=${query.get("spoken_language_code")}`
+                : ""
+            }`
+      }`,
+      ""
+    );
+    return data;
+  };
+  const { data, isLoading, isError, isSuccess }: any = useQuery("dev", func);
   useEffect(() => {
     const fetcher = async () => {
       await fetchEnums();
@@ -22,7 +47,6 @@ const Card = ({ match, fetchEnums, getAllEnums, children }: any) => {
     fetcher();
   }, []);
 
-  //
   return (
     <>
       <div className="card-container">
@@ -50,23 +74,33 @@ const Card = ({ match, fetchEnums, getAllEnums, children }: any) => {
             </Link>
           </nav>
           <div className="dropdown-links">
-            <span>
-              <Dropdown
-                type="spoken-lang"
-                headerText="Spoken Language"
-                searchTitle="Select a spoken language"
-                inputPlaceholder="Filter spoken languages"
-                flag="spoken"
-                data={spokenLanguages}
-                proLang={match.params.language}
-                spokenLang={
-                  query.get("spoken_language") !== null
-                    ? query.get("spoken_language")
-                    : "Any"
-                }
-                time={query.get("since") !== null ? query.get("since") : "Any"}
-              />
-            </span>
+            {match?.path?.includes(DEVELOPERS) === false && (
+              <span>
+                <Dropdown
+                  type="spoken-lang"
+                  headerText="Spoken Language"
+                  searchTitle="Select a spoken language"
+                  inputPlaceholder="Filter spoken languages"
+                  flag="spoken"
+                  data={spokenLanguages}
+                  proLang={match.params.language}
+                  boldText={
+                    spokenLanguages.filter(
+                      (e) => e.urlParam === query.get("spoken_language")
+                    )[0]?.name || "Any"
+                  }
+                  spokenLang={
+                    query.get("spoken_language") !== null
+                      ? query.get("spoken_language")
+                      : "Any"
+                  }
+                  time={
+                    query.get("since") !== null ? query.get("since") : "Any"
+                  }
+                />
+              </span>
+            )}
+
             <span>
               <Dropdown
                 match={match}
@@ -76,6 +110,7 @@ const Card = ({ match, fetchEnums, getAllEnums, children }: any) => {
                 inputPlaceholder="Filter languages"
                 data={getAllEnums?.allowedProgrammingLanguages}
                 proLang={match.params.language}
+                boldText={match.params.language ? match.params.language : "Any"}
                 spokenLang={
                   query.get("spoken_language") !== null
                     ? query.get("spoken_language")
@@ -93,6 +128,9 @@ const Card = ({ match, fetchEnums, getAllEnums, children }: any) => {
                 inputPlaceholder="hi"
                 data={getAllEnums?.allowedDates}
                 withInput={false}
+                boldText={
+                  query.get("since") !== null ? query.get("since") : "Any"
+                }
                 proLang={match.params.language}
                 spokenLang={
                   query.get("spoken_language") !== null
@@ -105,8 +143,27 @@ const Card = ({ match, fetchEnums, getAllEnums, children }: any) => {
           </div>
         </div>
         <main className="card-holder-body-wrapper">
-          {/* childern for other list card component */}
-          {children}
+          {isLoading ? (
+            <div className="loading">
+              Loading{" "}
+              {`${
+                match.path.includes(DEVELOPERS) ? "developers" : "repositories"
+              }`}
+            </div>
+          ) : isError ? (
+            <div className="error">
+              Error Loading{" "}
+              {`${
+                match.path.includes(DEVELOPERS) ? "developers" : "repositories"
+              }`}
+            </div>
+          ) : isSuccess ? (
+            data.map((item: any, index: any) => {
+              return <ListCardRepository {...item} key={index} />;
+            })
+          ) : (
+            ""
+          )}
         </main>
       </div>
     </>
