@@ -2,6 +2,9 @@
   border-bottom: 1px solid #c9d1d930;
   padding: 10px;
 }
+.mini-card:last-child {
+  border-bottom: none;
+}
 
 /* octicon is the book icon */
 
@@ -36,7 +39,7 @@
   margin-right: 0px;
 }
 /* btn font weight */
-.d-none{
+.d-none {
   font-weight: 500;
 }
 

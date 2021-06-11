@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 import { DEVELOPERS } from "../../routes/constant";
 import "./dropdown.css";
 const Dropdown = (props: any) => {
-  console.log("props,", props);
-
   const [filteredArray, setfilteredArray] = useState(props.data);
 
   useEffect(() => {
@@ -53,13 +51,13 @@ const Dropdown = (props: any) => {
                             props?.time.includes("Any") || !props?.time
                               ? ""
                               : `since=${props.time}`
-                          }&spoken_language=${item.urlParam}`
+                          }&spoken_language_code=${item.urlParam}`
                         : props.type === "date"
                         ? `?${
                             props.spokenLang === "Any" ||
                             props.spokenLang === undefined
                               ? ""
-                              : `spoken_language=${props.spokenLang}`
+                              : `spoken_language_code=${props.spokenLang}`
                           }&since=${item}`
                         : props?.type.includes("pro-lang")
                         ? `${
@@ -75,7 +73,7 @@ const Dropdown = (props: any) => {
                                 }${
                                   props.spokenLang === "Any" || undefined
                                     ? ""
-                                    : `&spoken_language=${props.spokenLang}`
+                                    : `&spoken_language_code=${props.spokenLang}`
                                 }`
                               : `/${item}?${
                                   props.time === "Any" || undefined
@@ -84,7 +82,7 @@ const Dropdown = (props: any) => {
                                 }${
                                   props.spokenLang === "Any" || undefined
                                     ? ""
-                                    : `&spoken_language=${props.spokenLang}`
+                                    : `&spoken_language_code=${props.spokenLang}`
                                 }`
                           }`
                         : ""

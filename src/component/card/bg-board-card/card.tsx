@@ -8,8 +8,6 @@ import spokenLanguages from "../../../api.service/spoken_languages";
 import "./card.css";
 
 const Card = (props: any) => {
-  console.log("card - props", typeof props.params.language);
-
   const useQueryParams = () => {
     return new URLSearchParams(useLocation().search);
   };
@@ -57,15 +55,16 @@ const Card = (props: any) => {
                   inputPlaceholder="Filter spoken languages"
                   flag="spoken"
                   data={spokenLanguages}
+                  withInput={true}
                   proLang={props?.params?.language}
                   boldText={
                     spokenLanguages.filter(
-                      (e) => e.urlParam === query.get("spoken_language")
+                      (e) => e.urlParam === query.get("spoken_language_code")
                     )[0]?.name || "Any"
                   }
                   spokenLang={
-                    query.get("spoken_language") !== null
-                      ? query.get("spoken_language")
+                    query.get("spoken_language_code") !== null
+                      ? query.get("spoken_language_code")
                       : "Any"
                   }
                   time={
@@ -86,12 +85,13 @@ const Card = (props: any) => {
                 inputPlaceholder="Filter languages"
                 data={props?.getAllEnums?.allowedProgrammingLanguages}
                 proLang={props?.params?.language}
+                withInput={true}
                 boldText={
                   props?.params?.language ? props?.params?.language : "Any"
                 }
                 spokenLang={
-                  query.get("spoken_language") !== null
-                    ? query.get("spoken_language")
+                  query.get("spoken_language_code") !== null
+                    ? query.get("spoken_language_code")
                     : "Any"
                 }
                 time={query.get("since") !== null ? query.get("since") : "Any"}
@@ -113,8 +113,8 @@ const Card = (props: any) => {
                 }
                 proLang={props?.params?.language}
                 spokenLang={
-                  query.get("spoken_language") !== null
-                    ? query.get("spoken_language")
+                  query.get("spoken_language_code") !== null
+                    ? query.get("spoken_language_code")
                     : "Any"
                 }
                 time={query.get("since") !== null ? query.get("since") : "Any"}
