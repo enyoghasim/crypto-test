@@ -76,24 +76,26 @@ const Dropdown = ({
                         ? `${
                             match.path.includes(DEVELOPERS)
                               ? `/developers${
-                                  proLang === "Any" || undefined
+                                  proLang === "Any" || proLang === undefined
                                     ? ""
                                     : `/${proLang}`
                                 }?${
-                                  time === "Any" || undefined
+                                  time === "Any" || time === undefined
                                     ? ""
                                     : `&since=${time}`
                                 }${
-                                  spokenLang === "Any" || undefined
+                                  spokenLang === "Any" ||
+                                  spokenLang === undefined
                                     ? ""
                                     : `&spoken_language=${spokenLang}`
                                 }`
                               : `/developers/${proLang}?${
-                                  time === "Any" || undefined
+                                  time === "Any" || time === undefined
                                     ? ""
                                     : `&since=${time}`
                                 }${
-                                  spokenLang === "Any" || undefined
+                                  spokenLang === "Any" ||
+                                  spokenLang === undefined
                                     ? ""
                                     : `&spoken_language=${spokenLang}`
                                 }`

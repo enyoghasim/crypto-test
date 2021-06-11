@@ -11,8 +11,6 @@ const Home = lazy(() => import("../page/home/home"));
 const NotFound = lazy(() => import("../page/notfound/notfound"));
 
 const IndexRouter: React.FC = (props: any): ReactElement => {
-  // console.log(data);
-
   return (
     <Suspense fallback={<p>Loading...</p>}>
       <Switch>

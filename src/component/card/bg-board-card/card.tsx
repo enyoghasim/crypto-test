@@ -1,20 +1,28 @@
 import { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useQuery } from "react-query";
 import Dropdown from "../../dropdown/dropdown";
 import { connect } from "react-redux";
 import { getEnums } from "../../../redux/thunk";
 import { HOME_ROUTE, DEVELOPERS } from "../../../routes/constant";
 import spokenLanguages from "../../../api.service/spoken_languages";
-
+import request from "../../../api.service/axios.factory";
 import "./card.css";
 
 const Card = ({ match, fetchEnums, getAllEnums, children }: any) => {
-  // get enums language and date
-
-  const useQuery = () => {
+  const useQueryParams = () => {
     return new URLSearchParams(useLocation().search);
   };
-  const query = useQuery();
+  const query = useQueryParams();
+  const func = async () => {
+    const { data } = await request(
+      "GET",
+      `${match.path.includes(DEVELOPERS) ? `/developers` : `/repositories`}`,
+      ""
+    );
+    return data;
+  };
+  const { data, isLoading }: any = useQuery("dev", func);
   useEffect(() => {
     const fetcher = async () => {
       await fetchEnums();
@@ -22,9 +30,15 @@ const Card = ({ match, fetchEnums, getAllEnums, children }: any) => {
     fetcher();
   }, []);
 
-  //
   return (
     <>
+      <div>
+        {data
+          ? data.map((item: any, index: number) => {
+              return <li key={index}>{item.username}</li>;
+            })
+          : "username"}
+      </div>
       <div className="card-container">
         <div className="card-header">
           <nav className="left-flex">
