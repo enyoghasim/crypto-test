@@ -9,7 +9,7 @@ const ListCardRepository = (props: any) => {
   const query = useQueryParams();
   return (
     <>
-      <div className="mini-card">
+      <div className="repo-mini-card">
         <div className="section-top-layer">
           <a target="_blank" rel="noreferrer" href={props?.url}>
             <h1 className="condensed-header-main-wrapper">
@@ -21,7 +21,7 @@ const ListCardRepository = (props: any) => {
                   data-view-component="true"
                   height="16"
                   width="16"
-                  className="octicon octicon-repo mr-1 color-text-secondary"
+                  className="repo-octicon octicon-repo mr-1 color-text-secondary"
                 >
                   <path
                     fillRule="evenodd"
@@ -47,7 +47,7 @@ const ListCardRepository = (props: any) => {
                   data-view-component="true"
                   height="16"
                   width="16"
-                  className="octicon octicon-star mr-0 mr-md-1"
+                  className="repo-octicon octicon-star mr-0 mr-md-1"
                 >
                   <path
                     fillRule="evenodd"
@@ -77,7 +77,7 @@ const ListCardRepository = (props: any) => {
                 data-view-component="true"
                 height="16"
                 width="16"
-                className="octicon octicon-star"
+                className="repo-octicon octicon-star"
               >
                 <path
                   fillRule="evenodd"
@@ -96,7 +96,7 @@ const ListCardRepository = (props: any) => {
                 data-view-component="true"
                 height="16"
                 width="16"
-                className="octicon octicon-repo-forked"
+                className="repo-octicon octicon-repo-forked"
               >
                 <path
                   fillRule="evenodd"
@@ -143,7 +143,7 @@ const ListCardRepository = (props: any) => {
               data-view-component="true"
               height="16"
               width="16"
-              className="octicon octicon-star"
+              className="repo-octicon octicon-star"
             >
               <path
                 fillRule="evenodd"

@@ -1,12 +1,12 @@
 import Card from "../../component/card/bg-board-card/card";
 import { useQuery, useQueryClient } from "react-query";
 import ListCardRepository from "../../component/card/sm-list-card-repository/card";
+import ListCardDevelopers from "../../component/card/sm-list-card-developer/card";
 import { useLocation } from "react-router";
 import request from "../../api.service/axios.factory";
 import { DEVELOPERS } from "../../routes/constant";
 import "./home.css";
 import { useEffect } from "react";
-import ListCardDevelopers from "../../component/card/sm-list-card-developer/card";
 
 const Home = ({ match }: any) => {
   const queryCli = useQueryClient();

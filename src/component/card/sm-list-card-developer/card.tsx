@@ -6,19 +6,24 @@ const ListCardDevelopers = (props: any) => {
   return (
     <>
       <article className="mini-card">
-        <Link to="/" className="color-text-secondary">
-          {props.rank}
-        </Link>
+        <a
+          rel="noreferrer"
+          href={props?.url}
+          target="_blank"
+          className="color-text-secondary"
+        >
+          {props?.rank}
+        </a>
         <div className="mx-3">
-          <Link to="/">
+          <a rel="noreferrer" href={props?.url} target="_blank">
             <img
               className="rounded avatar-user"
-              src="https://avatars.githubusercontent.com/u/6755973?s=96&amp;v=4"
+              src={props?.avatar}
               width="48"
               height="48"
-              alt="@jsuarezruiz"
+              alt={props?.username}
             />
-          </Link>
+          </a>
         </div>
 
         {/* third section for developer information */}
@@ -26,15 +31,25 @@ const ListCardDevelopers = (props: any) => {
           <div className="col-sm-8 d-md-flex">
             <div className="col-md-6">
               <h1 className="h3 lh-condensed">
-                <Link className="lh-condense-collaborator-f-name" to="/">
-                  {props.name}
-                </Link>
+                <a
+                  className="lh-condense-collaborator-f-name"
+                  rel="noreferrer"
+                  href={props?.url}
+                  target="_blank"
+                >
+                  {props?.name}
+                </a>
               </h1>
 
               <p className="f4 text-normal mb-1">
-                <Link to="/" className="Link--secondary">
-                  {props.username}
-                </Link>
+                <a
+                  rel="noreferrer"
+                  href={props?.url}
+                  target="_blank"
+                  className="Link--secondary"
+                >
+                  {props?.username}
+                </a>
               </p>
             </div>
 
@@ -58,9 +73,11 @@ const ListCardDevelopers = (props: any) => {
                     Popular repo
                   </div>
                   <h1 className="h4 lh-condensed">
-                    <Link
+                    <a
                       style={{ maxWidth: "175px" }}
-                      to="/"
+                      rel="noreferrer"
+                      href={props?.popularRepository?.url}
+                      target="_blank"
                       className="css-truncate css-truncate-target"
                     >
                       <svg
@@ -76,11 +93,11 @@ const ListCardDevelopers = (props: any) => {
                           d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z"
                         ></path>
                       </svg>
-                      xamarin-forms-goodlooking-UI
-                    </Link>
+                      {props?.popularRepository?.repositoryName}
+                    </a>
                   </h1>
                   <div className="f6 color-text-secondary mt-1">
-                    Xamarin.Forms goodlooking UI samples
+                    {props?.popularRepository?.description}
                   </div>
                 </article>
               </div>
