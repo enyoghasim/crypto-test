@@ -1,6 +1,5 @@
 import React, { ReactElement, Suspense, lazy } from "react";
-import { Router, Route, Switch } from "react-router-dom";
-import history from "../utility/history";
+import { Route, Switch } from "react-router-dom";
 import {
   HOME_ROUTE,
   DEVELOPERS,
@@ -11,34 +10,36 @@ import {
 const Home = lazy(() => import("../page/home/home"));
 const NotFound = lazy(() => import("../page/notfound/notfound"));
 
-const IndexRouter: React.FC = (props): ReactElement => {
-  return (
-      <Suspense fallback={<p>Loading...</p>}>
-        <Switch>
-          <Route
-            path={HOME_ROUTE}
-            exact
-            component={(props: any) => <Home {...props} />}
-          />
+const IndexRouter: React.FC = (props: any): ReactElement => {
+  // console.log(data);
 
-          <Route
-            path={DEVELOPERS}
-            exact
-            component={(props: any) => <Home {...props} />}
-          />
-          <Route
-            path={REPO_LANGUAGE_FILTER}
-            exact
-            component={(props: any) => <Home {...props} />}
-          />
-          <Route
-            path={DEVELOPER_LANGUAGE_FILTER}
-            exact
-            component={(props: any) => <Home {...props} />}
-          />
-          <Route component={NotFound} />
-        </Switch>
-      </Suspense>
+  return (
+    <Suspense fallback={<p>Loading...</p>}>
+      <Switch>
+        <Route
+          path={HOME_ROUTE}
+          exact
+          component={(props: any) => <Home {...props} />}
+        />
+
+        <Route
+          path={DEVELOPERS}
+          exact
+          component={(props: any) => <Home {...props} />}
+        />
+        <Route
+          path={REPO_LANGUAGE_FILTER}
+          exact
+          component={(props: any) => <Home {...props} />}
+        />
+        <Route
+          path={DEVELOPER_LANGUAGE_FILTER}
+          exact
+          component={(props: any) => <Home {...props} />}
+        />
+        <Route component={NotFound} />
+      </Switch>
+    </Suspense>
   );
 };
 
