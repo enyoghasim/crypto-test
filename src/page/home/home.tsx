@@ -17,14 +17,14 @@ const Home = ({ match }: any) => {
       `${
         match.path.includes(DEVELOPERS)
           ? `/developers${
-              match.params.language ? `/${match.params.language}` : ""
+              match?.params?.language ? `/${match?.params?.language}` : ""
             }?${query.get("since") ? `&since=${query.get("since")}` : ""}${
               query.get("spoken_language_code")
                 ? `&spoken_language_code=${query.get("spoken_language_code")}`
                 : ""
             }`
           : `/repositories${
-              match.params.language ? `/${match.params.language}` : ""
+              match?.params?.language ? `/${match?.params?.language}` : ""
             }?${query.get("since") ? `&since=${query.get("since")}` : ""}${
               query.get("spoken_language_code")
                 ? `&spoken_language_code=${query.get("spoken_language_code")}`
@@ -45,7 +45,7 @@ const Home = ({ match }: any) => {
               <div className="loading">
                 Loading{" "}
                 {`${
-                  match.path.includes(DEVELOPERS)
+                  match?.path.includes(DEVELOPERS)
                     ? "developers"
                     : "repositories"
                 }`}
@@ -54,7 +54,7 @@ const Home = ({ match }: any) => {
               <div className="error">
                 Error Loading{" "}
                 {`${
-                  match.path.includes(DEVELOPERS)
+                  match?.path.includes(DEVELOPERS)
                     ? "developers"
                     : "repositories"
                 }`}

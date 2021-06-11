@@ -11,15 +11,15 @@ const Dropdown = (props: any) => {
     setfilteredArray(props.data);
   }, [props.data]);
   const handleInput = (e: any) => {
-    if (props.flag === null || props.flag === undefined) {
+    if (props?.flag === null || props?.flag === undefined) {
       const filter = props.data.filter((element: any) =>
         element.toLowerCase().includes(e.target.value.toLowerCase())
       );
       setfilteredArray(filter);
       return;
     }
-    const filter = props.data.filter((element: any) =>
-      element.name.toLowerCase().includes(e.target.value.toLowerCase())
+    const filter = props?.data.filter((element: any) =>
+      element.name.toLowerCase().includes(e.target?.value.toLowerCase())
     );
     setfilteredArray(filter);
   };
@@ -44,13 +44,13 @@ const Dropdown = (props: any) => {
           )}
           <div className="select-menu-list">
             {filteredArray?.length ? (
-              filteredArray?.map((item: any, index: any) => {
+              filteredArray.map((item: any, index: any) => {
                 return (
                   <Link
                     to={`${
                       props.flag?.length > 2
                         ? `?${
-                            props.time === "Any" || props.time === undefined
+                            props?.time.includes("Any") || !props?.time
                               ? ""
                               : `since=${props.time}`
                           }&spoken_language=${item.urlParam}`
@@ -61,7 +61,7 @@ const Dropdown = (props: any) => {
                               ? ""
                               : `spoken_language=${props.spokenLang}`
                           }&since=${item}`
-                        : props.type === "pro-lang"
+                        : props?.type.includes("pro-lang")
                         ? `${
                             props?.path?.includes(DEVELOPERS)
                               ? `/developers${
