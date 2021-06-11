@@ -67,7 +67,7 @@ const Dropdown = (props: any) => {
                               ? `/developers${
                                   props.proLang === "Any" || undefined
                                     ? ""
-                                    : `/${props.proLang}`
+                                    : `/${item}`
                                 }?${
                                   props.time === "Any" || undefined
                                     ? ""
@@ -77,7 +77,7 @@ const Dropdown = (props: any) => {
                                     ? ""
                                     : `&spoken_language=${props.spokenLang}`
                                 }`
-                              : `/developers/${props.proLang}?${
+                              : `/${item}?${
                                   props.time === "Any" || undefined
                                     ? ""
                                     : `&since=${props.time}`
