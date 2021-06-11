@@ -43,21 +43,15 @@ const Home = ({ match }: any) => {
           <Card {...match}>
             {isLoading ? (
               <div className="loading">
-                Loading{" "}
-                {`${
-                  match?.path.includes(DEVELOPERS)
-                    ? "developers"
-                    : "repositories"
-                }`}
+                <section className="on-success-is-loading-state">
+                  Loading
+                </section>
               </div>
             ) : isError ? (
               <div className="error">
-                Error Loading{" "}
-                {`${
-                  match?.path.includes(DEVELOPERS)
-                    ? "developers"
-                    : "repositories"
-                }`}
+                <div className="error-state">
+                  server error trying to load data
+                </div>
               </div>
             ) : isSuccess ? (
               data.map((item: any, index: any) => {
