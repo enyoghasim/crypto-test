@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "./card.css";
 
-const ListCard = () => {
+const ListCardRepository = () => {
   return (
     <>
       <div className="mini-card">
@@ -118,4 +118,4 @@ const ListCard = () => {
   );
 };
 
-export default ListCard;
+export default ListCardRepository;
