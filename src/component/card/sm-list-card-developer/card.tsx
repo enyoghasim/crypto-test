@@ -26,7 +26,7 @@ const ListCardDevelopers = () => {
           <div className="col-sm-8 d-md-flex">
             <div className="col-md-6">
               <h1 className="h3 lh-condensed">
-                <Link to="/">Javier Suárez</Link>
+                <Link className="lh-condense-collaborator-f-name" to="/">Javier Suárez</Link>
               </h1>
 
               <p className="f4 text-normal mb-1">

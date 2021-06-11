@@ -12,6 +12,10 @@ body.modal-overflow {
   overflow: hidden;
 }
 
+p {
+  margin-top: 0;
+}
+
 *,
 *:before,
 *:after {

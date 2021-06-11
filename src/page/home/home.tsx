@@ -42,7 +42,6 @@ const Home = ({ match }: any) => {
       <div className="trendings-page">
         <div className="card-wrapper">
           <Card {...match}>
-
             {isLoading && (
               <div className="loading">
                 <section className="on-success-is-loading-state">
@@ -51,12 +50,11 @@ const Home = ({ match }: any) => {
               </div>
             )}
 
-
             {isSuccess &&
+              // <ListCardDevelopers />
               data.map((item: any, index: any) => (
                 <ListCardRepository {...item} key={index} />
               ))}
-              
 
             {isError && (
               <div className="error">
