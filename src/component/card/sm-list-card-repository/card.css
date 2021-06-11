@@ -1,4 +1,4 @@
-.mini-card {
+.repo-mini-card {
   border-bottom: 1px solid #c9d1d930;
   padding: 10px;
 }
@@ -8,7 +8,7 @@
 
 /* octicon is the book icon */
 
-.octicon {
+.repo-octicon {
   margin-right: 4px;
   display: inline-block;
   overflow: visible;
