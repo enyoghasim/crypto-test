@@ -46,7 +46,6 @@ const Home = ({ match }: any) => {
   );
 
   useEffect(() => {
-    console.log("hi");
     // queryCli.invalidateQueries("dev");
     try {
       const func = async () => {
@@ -56,34 +55,21 @@ const Home = ({ match }: any) => {
           `${
             match.path.includes(DEVELOPERS)
               ? `/developers${match?.url ? `/${match?.url}` : ""}?${
-                  query.get("since") ? `&since=${query.get("since")}` : ""
-                }${
-                  query.get("spoken_language_code")
-                    ? `&spoken_language_code=${query.get(
-                        "spoken_language_code"
-                      )}`
-                    : ""
-                }`
+                  since ? `&since=${since}` : ""
+                }${lang ? `&spoken_language_code=${lang}` : ""}`
               : `/repositories${match?.url ? `/${match?.url}` : ""}?${
-                  query.get("since") ? `&since=${query.get("since")}` : ""
-                }${
-                  query.get("spoken_language_code")
-                    ? `&spoken_language_code=${query.get(
-                        "spoken_language_code"
-                      )}`
-                    : ""
-                }`
+                  since ? `&since=${since}` : ""
+                }${lang ? `&spoken_language_code=${lang}` : ""}`
           }`,
           ""
         );
         queryCli.setQueryData(["dev"], data);
         console.log(data);
-        func();
       };
+      func();
     } catch (err) {
       return;
     }
-    // queryCli.setQueryData()
   }, [match.url, lang, since]);
 
   return (
