@@ -15,7 +15,7 @@ const Home = ({ match }: any) => {
   };
   const query = useQueryParams();
   const apiFunction = async () => {
-    const { data } = await request(
+    const { data } = await request<Object>(
       "GET",
       `${
         match.path.includes(DEVELOPERS)
@@ -64,13 +64,12 @@ const Home = ({ match }: any) => {
           ""
         );
         queryCli.setQueryData(["dev"], data);
-        console.log(data);
       };
       func();
     } catch (err) {
       return;
     }
-  }, [match.url, lang, since]);
+  }, [match?.url, lang, since]);
 
   return (
     <>

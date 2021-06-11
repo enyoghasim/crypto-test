@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { getTruncatedText } from "../../../utility/stringMgt";
 import Button from "../../button/button";
 import "./card.css";
 
@@ -96,8 +97,14 @@ const ListCardDevelopers = (props: any) => {
                       {props?.popularRepository?.repositoryName}
                     </a>
                   </h1>
-                  <div className="f6 color-text-secondary mt-1">
-                    {props?.popularRepository?.description}
+                  <div
+                    title={props?.popularRepository?.description}
+                    className="f6 color-text-secondary mt-1"
+                  >
+                    {getTruncatedText(
+                      props?.popularRepository?.description,
+                      90
+                    )}
                   </div>
                 </article>
               </div>
