@@ -3,13 +3,15 @@ import ListCardRepository from "../../component/card/sm-list-card-repository/car
 
 import "./home.css";
 
-const RepositoryList = ({ match }: any) => {
+const Home = ({ match }: any) => {
   return (
     <>
       <div className="trendings-page">
         <div className="card-wrapper">
-          <Card match={match} >
-            <ListCardRepository/>
+          <Card match={match}>
+            {[1, 2, 3, 4, 5 ,6].map((item) => (
+              <ListCardRepository key={item} />
+            ))}
           </Card>
         </div>
       </div>
@@ -17,4 +19,4 @@ const RepositoryList = ({ match }: any) => {
   );
 };
 
-export default RepositoryList;
+export default Home;
