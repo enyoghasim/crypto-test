@@ -6,6 +6,7 @@ import request from "../../api.service/axios.factory";
 import { DEVELOPERS } from "../../routes/constant";
 import "./home.css";
 import { useEffect } from "react";
+import ListCardDevelopers from "../../component/card/sm-list-card-developer/card";
 
 const Home = ({ match }: any) => {
   const queryCli = useQueryClient();
@@ -99,8 +100,15 @@ const Home = ({ match }: any) => {
             )}
 
             {isSuccess &&
+              !match.path.includes(DEVELOPERS) &&
               data?.map((item: any, index: any) => (
                 <ListCardRepository {...item} key={index} />
+              ))}
+
+            {isSuccess &&
+              match.path.includes(DEVELOPERS) &&
+              data?.map((item: any, index: any) => (
+                <ListCardDevelopers {...item} key={index} />
               ))}
 
             {isError && (

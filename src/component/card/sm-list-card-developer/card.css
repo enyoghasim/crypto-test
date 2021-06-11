@@ -17,7 +17,6 @@
   fill: currentColor;
 }
 
-
 /* btn class for the link tag */
 
 .btn-block {
@@ -31,26 +30,25 @@
   line-height: 20px;
 }
 
-
 .btn-block {
-    display: block;
-    width: 100%;
-    text-align: center;
+  display: block;
+  width: 100%;
+  text-align: center;
 }
 .btn {
-    position: relative;
-    font-weight: 500;
-    white-space: nowrap;
-    vertical-align: middle;
-    cursor: pointer;
-    border: 1px solid;
-    border-radius: 6px;
-    appearance: none;
-    color: #c9d1d9;
-    background-color: #21262d;
-    border-color: #30363d;
-    transition: .2s cubic-bezier(.3,0,.5,1);
-    transition-property: color,background-color,border-color;
+  position: relative;
+  font-weight: 500;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 1px solid;
+  border-radius: 6px;
+  appearance: none;
+  color: #c9d1d9;
+  background-color: #21262d;
+  border-color: #30363d;
+  transition: 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+  transition-property: color, background-color, border-color;
 }
 
 /* btn style ends here */

@@ -2,12 +2,12 @@ import { Link } from "react-router-dom";
 import Button from "../../button/button";
 import "./card.css";
 
-const ListCardDevelopers = () => {
+const ListCardDevelopers = (props: any) => {
   return (
     <>
       <article className="mini-card">
         <Link to="/" className="color-text-secondary">
-          1
+          {props.rank}
         </Link>
         <div className="mx-3">
           <Link to="/">
@@ -26,12 +26,14 @@ const ListCardDevelopers = () => {
           <div className="col-sm-8 d-md-flex">
             <div className="col-md-6">
               <h1 className="h3 lh-condensed">
-                <Link className="lh-condense-collaborator-f-name" to="/">Javier Suárez</Link>
+                <Link className="lh-condense-collaborator-f-name" to="/">
+                  {props.name}
+                </Link>
               </h1>
 
               <p className="f4 text-normal mb-1">
                 <Link to="/" className="Link--secondary">
-                  jsuarezruiz
+                  {props.username}
                 </Link>
               </p>
             </div>
@@ -114,9 +116,7 @@ const ListCardDevelopers = () => {
                     acceptCharset="UTF-8"
                     method="post"
                   >
-                    <Button customClass="btn btn-sm btn-block">
-                      Follow
-                    </Button>
+                    <Button customClass="btn btn-sm btn-block">Follow</Button>
                   </form>
                 </span>
               </div>
