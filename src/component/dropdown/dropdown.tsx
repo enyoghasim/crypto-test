@@ -56,38 +56,33 @@ const Dropdown = (props: any) => {
                           }&spoken_language=${item.urlParam}`
                         : props.type === "date"
                         ? `?${
-                            props?.spokenLang.includes("Any") ||
-                            !props.spokenLang
+                            props.spokenLang === "Any" ||
+                            props.spokenLang === undefined
                               ? ""
                               : `spoken_language=${props.spokenLang}`
-                          }&since=${item}`
+                          }&time=${item}`
                         : props.type === "pro-lang"
                         ? `${
-                            props?.path?.includes(DEVELOPERS)
+                            props.path.includes(DEVELOPERS)
                               ? `/developers${
-                                  props?.proLang.includes("Any") ||
-                                  !props.proLang
+                                  props.proLang === "Any" || undefined
                                     ? ""
-                                    : `/${props?.proLang}`
+                                    : `/${props.proLang}`
                                 }?${
-                                  props.time === "Any" ||
-                                  props.time === undefined
+                                  props.time === "Any" || undefined
                                     ? ""
                                     : `&since=${props.time}`
                                 }${
-                                  props.spokenLang === "Any" ||
-                                  props.spokenLang === undefined
+                                  props.spokenLang === "Any" || undefined
                                     ? ""
                                     : `&spoken_language=${props.spokenLang}`
                                 }`
                               : `/developers/${props.proLang}?${
-                                  props.time === "Any" ||
-                                  props.time === undefined
+                                  props.time === "Any" || undefined
                                     ? ""
                                     : `&since=${props.time}`
                                 }${
-                                  props.spokenLang === "Any" ||
-                                  props.spokenLang === undefined
+                                  props.spokenLang === "Any" || undefined
                                     ? ""
                                     : `&spoken_language=${props.spokenLang}`
                                 }`
