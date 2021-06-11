@@ -1,6 +1,7 @@
 import Card from "../../component/card/bg-board-card/card";
 import { useQuery } from "react-query";
 import ListCardRepository from "../../component/card/sm-list-card-repository/card";
+import ListCardDevelopers from "../../component/card/sm-list-card-developer/card";
 import { useLocation } from "react-router";
 import request from "../../api.service/axios.factory";
 import { DEVELOPERS } from "../../routes/constant";
@@ -41,24 +42,28 @@ const Home = ({ match }: any) => {
       <div className="trendings-page">
         <div className="card-wrapper">
           <Card {...match}>
-            {isLoading ? (
+
+            {isLoading && (
               <div className="loading">
                 <section className="on-success-is-loading-state">
                   Loading
                 </section>
               </div>
-            ) : isError ? (
+            )}
+
+
+            {isSuccess &&
+              data.map((item: any, index: any) => (
+                <ListCardRepository {...item} key={index} />
+              ))}
+              
+
+            {isError && (
               <div className="error">
                 <div className="error-state">
                   server error trying to load data
                 </div>
               </div>
-            ) : isSuccess ? (
-              data.map((item: any, index: any) => {
-                return <ListCardRepository {...item} key={index} />;
-              })
-            ) : (
-              ""
             )}
           </Card>
         </div>
