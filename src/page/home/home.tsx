@@ -1,5 +1,5 @@
 import Card from "../../component/card/bg-board-card/card";
-import { useQuery } from "react-query";
+import { useQuery, useQueryClient } from "react-query";
 import ListCardRepository from "../../component/card/sm-list-card-repository/card";
 import { useLocation } from "react-router";
 import request from "../../api.service/axios.factory";
@@ -8,11 +8,12 @@ import "./home.css";
 import { useEffect } from "react";
 
 const Home = ({ match }: any) => {
+  const queryCli = useQueryClient();
   const useQueryParams = () => {
     return new URLSearchParams(useLocation().search);
   };
   const query = useQueryParams();
-  const func = async () => {
+  const apiFunction = async () => {
     const { data } = await request(
       "GET",
       `${
@@ -37,10 +38,51 @@ const Home = ({ match }: any) => {
     return data;
   };
   const since = query.get("since");
-  const lang = query.get("spoken_language");
-  const { data, isLoading, isError, isSuccess }: any = useQuery("dev", func);
+  const lang = query.get("spoken_language_code");
+  const { data, isLoading, isError, isSuccess }: any = useQuery(
+    "dev",
+    apiFunction
+  );
+
   useEffect(() => {
-    console.log(match.url);
+    console.log("hi");
+    // queryCli.invalidateQueries("dev");
+    try {
+      const func = async () => {
+        // const data = await apiFunction();
+        const { data } = await request(
+          "GET",
+          `${
+            match.path.includes(DEVELOPERS)
+              ? `/developers${match?.url ? `/${match?.url}` : ""}?${
+                  query.get("since") ? `&since=${query.get("since")}` : ""
+                }${
+                  query.get("spoken_language_code")
+                    ? `&spoken_language_code=${query.get(
+                        "spoken_language_code"
+                      )}`
+                    : ""
+                }`
+              : `/repositories${match?.url ? `/${match?.url}` : ""}?${
+                  query.get("since") ? `&since=${query.get("since")}` : ""
+                }${
+                  query.get("spoken_language_code")
+                    ? `&spoken_language_code=${query.get(
+                        "spoken_language_code"
+                      )}`
+                    : ""
+                }`
+          }`,
+          ""
+        );
+        queryCli.setQueryData(["dev"], data);
+        console.log(data);
+        func();
+      };
+    } catch (err) {
+      return;
+    }
+    // queryCli.setQueryData()
   }, [match.url, lang, since]);
 
   return (
@@ -57,7 +99,7 @@ const Home = ({ match }: any) => {
             )}
 
             {isSuccess &&
-              data.map((item: any, index: any) => (
+              data?.map((item: any, index: any) => (
                 <ListCardRepository {...item} key={index} />
               ))}
 

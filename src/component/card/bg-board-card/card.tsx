@@ -59,12 +59,12 @@ const Card = (props: any) => {
                   proLang={props?.params?.language}
                   boldText={
                     spokenLanguages.filter(
-                      (e) => e.urlParam === query.get("spoken_language")
+                      (e) => e.urlParam === query.get("spoken_language_code")
                     )[0]?.name || "Any"
                   }
                   spokenLang={
-                    query.get("spoken_language") !== null
-                      ? query.get("spoken_language")
+                    query.get("spoken_language_code") !== null
+                      ? query.get("spoken_language_code")
                       : "Any"
                   }
                   time={
@@ -90,8 +90,8 @@ const Card = (props: any) => {
                   props?.params?.language ? props?.params?.language : "Any"
                 }
                 spokenLang={
-                  query.get("spoken_language") !== null
-                    ? query.get("spoken_language")
+                  query.get("spoken_language_code") !== null
+                    ? query.get("spoken_language_code")
                     : "Any"
                 }
                 time={query.get("since") !== null ? query.get("since") : "Any"}
@@ -113,8 +113,8 @@ const Card = (props: any) => {
                 }
                 proLang={props?.params?.language}
                 spokenLang={
-                  query.get("spoken_language") !== null
-                    ? query.get("spoken_language")
+                  query.get("spoken_language_code") !== null
+                    ? query.get("spoken_language_code")
                     : "Any"
                 }
                 time={query.get("since") !== null ? query.get("since") : "Any"}
