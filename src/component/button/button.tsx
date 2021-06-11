@@ -5,7 +5,7 @@ const InputButton = ({ customClass, children }: any) => {
     <>
       <button
         type="button"
-        className={`btn btn-sm ${
+        className={`${
           customClass === undefined || null ? "" : customClass
         }`}
         aria-label="Unstar this repository"

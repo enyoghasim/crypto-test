@@ -1,5 +1,3 @@
-//TODO comeback to this file
-
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { DEVELOPERS } from "../../routes/constant";
@@ -15,7 +13,8 @@ const Dropdown = ({
   proLang = "Any",
   spokenLang = "Any",
   time = "Any",
-  match
+  match,
+  boldText
 }: any) => {
   const [filteredArray, setfilteredArray] = useState(data);
 
@@ -40,7 +39,7 @@ const Dropdown = ({
       <details className="details-option">
         <summary className=" btn-link" role="button">
           <span className="txt-inner-opt">{headerText}:</span>
-          <span className="text-bold">Any</span>
+          <span className="text-bold">{boldText}</span>
         </summary>
         <section className="option-select-dropdown">
           <div className="option-select-header">{searchTitle}</div>
@@ -71,7 +70,7 @@ const Dropdown = ({
                             spokenLang === "Any" || spokenLang === undefined
                               ? ""
                               : `spoken_language=${spokenLang}`
-                          }&time=${item}`
+                          }&since=${item}`
                         : type === "pro-lang"
                         ? `${
                             match.path.includes(DEVELOPERS)
