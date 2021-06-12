@@ -1,4 +1,4 @@
-import scrapeUrl from "../utility/urlScrapper";
+import scrapeUrl from "../../../utility/urlScrapper";
 import { setEnums } from "./action";
 
 export const getEnums = () => {

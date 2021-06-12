@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import enumReducer from "./reducer";
+import enumReducer from "../page/home/redux/reducer";
 
 const rootReducer = combineReducers({
   enumReducer

@@ -70,8 +70,11 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  color: var(--anchor-txt-color);
   text-decoration: none;
+}
+
+.repository-name{
+  color: var(--anchor-txt-color);
 }
 
 .mr-1 {

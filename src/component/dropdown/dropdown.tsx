@@ -8,14 +8,17 @@ const Dropdown = (props: any) => {
   useEffect(() => {
     setfilteredArray(props.data);
   }, [props.data]);
+
+  // handles the search input operation on dropdown
   const handleInput = (e: any) => {
     if (props?.flag === null || props?.flag === undefined) {
-      const filter = props.data.filter((element: any) =>
+      const filter = props.data.filter((element: string) =>
         element.toLowerCase().includes(e.target.value.toLowerCase())
       );
       setfilteredArray(filter);
       return;
     }
+
     const filter = props?.data.filter((element: any) =>
       element.name.toLowerCase().includes(e.target?.value.toLowerCase())
     );
@@ -23,7 +26,7 @@ const Dropdown = (props: any) => {
   };
   return (
     <>
-      <details className="details-option">
+      <details className="details-option" open={false}>
         <summary className=" btn-link" role="button">
           <span className="txt-inner-opt">{props.headerText || "Any"}:</span>
           <span className="text-bold">{props.boldText}</span>
@@ -54,8 +57,8 @@ const Dropdown = (props: any) => {
                           }&spoken_language_code=${item.urlParam}`
                         : props.type === "date"
                         ? `?${
-                            props.spokenLang === "Any" ||
-                            props.spokenLang === undefined
+                            !props.spokenLang ||
+                            props.spokenLang.includes("Any")
                               ? ""
                               : `spoken_language_code=${props.spokenLang}`
                           }&since=${item}`
@@ -63,24 +66,27 @@ const Dropdown = (props: any) => {
                         ? `${
                             props.path.includes(DEVELOPERS)
                               ? `/developers${
-                                  props.proLang === "Any" || undefined
+                                  !props.proLang ||
+                                  props.proLang.includes("Any")
                                     ? ""
                                     : `/${item}`
                                 }?${
-                                  props.time === "Any" || undefined
+                                  !props.time || props.time.includes("Any")
                                     ? ""
                                     : `&since=${props.time}`
                                 }${
-                                  props.spokenLang === "Any" || undefined
+                                  !props.spokenLang ||
+                                  props.spokenLang.includes("Any")
                                     ? ""
                                     : `&spoken_language_code=${props.spokenLang}`
                                 }`
                               : `/${item}?${
-                                  props.time === "Any" || undefined
+                                  !props.time || props.time.includes("Any")
                                     ? ""
                                     : `&since=${props.time}`
                                 }${
-                                  props.spokenLang === "Any" || undefined
+                                  !props.spokenLang ||
+                                  props.spokenLang.includes("Any")
                                     ? ""
                                     : `&spoken_language_code=${props.spokenLang}`
                                 }`
@@ -95,7 +101,10 @@ const Dropdown = (props: any) => {
                 );
               })
             ) : (
-              <div className="warn-text">PLEASE NO ITEM AVAILABLE</div>
+              <>
+                {/* for empty search not applicable */}
+                <div className="warn-text">PLEASE NO ITEM AVAILABLE</div>
+              </>
             )}
           </div>
         </section>

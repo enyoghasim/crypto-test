@@ -1,8 +1,9 @@
 import { useEffect } from "react";
+import PropTypes from 'prop-types';
 import { Link, useLocation } from "react-router-dom";
 import Dropdown from "../../dropdown/dropdown";
 import { connect } from "react-redux";
-import { getEnums } from "../../../redux/thunk";
+import { getEnums } from "../../../page/home/redux/thunk";
 import { HOME_ROUTE, DEVELOPERS } from "../../../routes/constant";
 import spokenLanguages from "../../../api.service/spoken_languages";
 import "./card.css";
@@ -129,7 +130,7 @@ const Card = (props: any) => {
 };
 const mapStateToProps = (state: any) => {
   return {
-    getAllEnums: state.enumReducer.enums
+    getAllEnums: state.enumReducer?.enums
   };
 };
 
@@ -137,5 +138,9 @@ const mapDispatchToProps = (dispatch: any) => {
   return {
     fetchEnums: () => dispatch(getEnums())
   };
+};
+
+Card.propTypes = {
+  name: PropTypes.string
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Card);

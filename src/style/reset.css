@@ -52,7 +52,7 @@ nav ul {
 }
 
 a {
-  color: inherit;
+  color: var(--anchor-txt-color);
   cursor: pointer;
   text-decoration: none;
 }

@@ -8,12 +8,17 @@ import { DEVELOPERS } from "../../routes/constant";
 import "./home.css";
 import { useEffect } from "react";
 
+import { IqueryReactOption } from "./home.td";
+
 const Home = ({ match }: any) => {
   const queryCli = useQueryClient();
+
   const useQueryParams = () => {
     return new URLSearchParams(useLocation().search);
   };
+
   const query = useQueryParams();
+
   const apiFunction = async () => {
     const { data } = await request<Object>(
       "GET",
@@ -38,9 +43,10 @@ const Home = ({ match }: any) => {
     );
     return data;
   };
+
   const since = query.get("since");
   const lang = query.get("spoken_language_code");
-  const { data, isLoading, isError, isSuccess }: any = useQuery(
+  const { data, isLoading, isError, isSuccess }: IqueryReactOption = useQuery(
     "dev",
     apiFunction
   );
@@ -48,7 +54,7 @@ const Home = ({ match }: any) => {
   useEffect(() => {
     // queryCli.invalidateQueries("dev");
     try {
-      const func = async () => {
+      const getRouteFromApi = async () => {
         // const data = await apiFunction();
         const { data } = await request(
           "GET",
@@ -65,9 +71,10 @@ const Home = ({ match }: any) => {
         );
         queryCli.setQueryData(["dev"], data);
       };
-      func();
+
+      getRouteFromApi();
     } catch (err) {
-      return;
+      throw new Error(err);
     }
   }, [match?.url, lang, since]);
 
