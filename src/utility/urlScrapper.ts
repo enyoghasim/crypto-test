@@ -11,4 +11,6 @@ const scrapeUrl = async () => {
   return scrappedData;
 };
 
+
+
 export default scrapeUrl;

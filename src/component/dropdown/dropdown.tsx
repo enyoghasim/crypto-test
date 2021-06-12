@@ -5,9 +5,16 @@ import "./dropdown.css";
 const Dropdown = (props: any) => {
   const [filteredArray, setfilteredArray] = useState(props.data);
 
+  const [is_dialogue_open, setIs_dialogue_open] = useState(false);
+
   useEffect(() => {
     setfilteredArray(props.data);
   }, [props.data]);
+  
+
+
+
+
 
   // handles the search input operation on dropdown
   const handleInput = (e: any) => {
@@ -26,7 +33,7 @@ const Dropdown = (props: any) => {
   };
   return (
     <>
-      <details className="details-option" open={false}>
+      <details className="details-option" open={is_dialogue_open}>
         <summary className=" btn-link" role="button">
           <span className="txt-inner-opt">{props.headerText || "Any"}:</span>
           <span className="text-bold">{props.boldText}</span>
@@ -43,7 +50,9 @@ const Dropdown = (props: any) => {
               />
             </div>
           )}
-          <div className="select-menu-list">
+          <div className="select-menu-list" onClick={()=>
+            setIs_dialogue_open(()=>!is_dialogue_open)
+            }>
             {filteredArray?.length ? (
               filteredArray.map((item: any, index: any) => {
                 return (
