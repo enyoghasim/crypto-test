@@ -106,7 +106,7 @@ const Home = ({ match }: any) => {
             {isError && (
               <div className="error">
                 <div className="error-state">
-                  server error trying to load data
+                  error trying to load data
                 </div>
               </div>
             )}
