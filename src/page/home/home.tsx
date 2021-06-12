@@ -9,8 +9,10 @@ import "./home.css";
 import { useEffect } from "react";
 
 import { IqueryReactOption } from "./home.td";
+import { connect } from "react-redux";
+import { isLoading } from "./redux/action";
 
-const Home = ({ match }: any) => {
+const Home = ({ match, callLoading, is_loading }: any) => {
   const queryCli = useQueryClient();
 
   const useQueryParams = () => {
@@ -56,6 +58,8 @@ const Home = ({ match }: any) => {
     try {
       const getRouteFromApi = async () => {
         // const data = await apiFunction();
+
+        callLoading(true);
         const { data } = await request(
           "GET",
           `${
@@ -69,10 +73,12 @@ const Home = ({ match }: any) => {
           }`,
           ""
         );
+        
         queryCli.setQueryData(["dev"], data);
       };
 
       getRouteFromApi();
+      callLoading(false); // set the loading state back to false
     } catch (err) {
       throw new Error(err);
     }
@@ -81,9 +87,12 @@ const Home = ({ match }: any) => {
   return (
     <>
       <div className="trendings-page">
+        {console.log("???????????????????",is_loading)}
         <div className="card-wrapper">
+          
           <Card {...match}>
-            {isLoading && (
+
+            {(isLoading) && (
               <div className="loading">
                 <section className="on-success-is-loading-state">
                   Loading
@@ -91,13 +100,13 @@ const Home = ({ match }: any) => {
               </div>
             )}
 
-            {isSuccess &&
+            {(isSuccess && !is_loading) &&
               !match.path.includes(DEVELOPERS) &&
               data?.map((item: any, index: any) => (
                 <ListCardRepository {...item} key={index} />
               ))}
 
-            {isSuccess &&
+            {(isSuccess && !is_loading) &&
               match.path.includes(DEVELOPERS) &&
               data?.map((item: any, index: any) => (
                 <ListCardDevelopers {...item} key={index} />
@@ -105,9 +114,7 @@ const Home = ({ match }: any) => {
 
             {isError && (
               <div className="error">
-                <div className="error-state">
-                  error trying to load data
-                </div>
+                <div className="error-state">error trying to load data</div>
               </div>
             )}
           </Card>
@@ -117,4 +124,19 @@ const Home = ({ match }: any) => {
   );
 };
 
-export default Home;
+// isLoading
+
+const mapStateToProps = (state: any) => {
+  
+  return {
+    is_loading: state.enumReducer?.is_loading,
+  };
+};
+
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    callLoading: (payload:boolean) => dispatch(isLoading(payload)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
