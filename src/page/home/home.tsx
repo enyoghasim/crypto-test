@@ -8,21 +8,23 @@ import { DEVELOPERS } from "../../routes/constant";
 import "./home.css";
 import { useEffect } from "react";
 
-import { IqueryReactOption } from "./home.td";
-import { connect } from "react-redux";
-import { isLoading } from "./redux/action";
+import { Ideveloper, Ipopular_repository, IqueryReactOption } from "./home.td";
 
-const Home = ({ match, callLoading, is_loading }: any) => {
+
+
+const Home = ({ match }: any) => {
   const queryCli = useQueryClient();
 
   const useQueryParams = () => {
     return new URLSearchParams(useLocation().search);
   };
 
+  
+
   const query = useQueryParams();
 
   const apiFunction = async () => {
-    const { data } = await request<Object>(
+    const { data } = await request<Ideveloper<Ipopular_repository>[]>(
       "GET",
       `${
         match.path.includes(DEVELOPERS)
@@ -43,6 +45,8 @@ const Home = ({ match, callLoading, is_loading }: any) => {
       }`,
       ""
     );
+
+    console.log(data);
     return data;
   };
 
@@ -57,9 +61,6 @@ const Home = ({ match, callLoading, is_loading }: any) => {
     // queryCli.invalidateQueries("dev");
     try {
       const getRouteFromApi = async () => {
-        // const data = await apiFunction();
-
-        callLoading(true);
         const { data } = await request(
           "GET",
           `${
@@ -73,12 +74,11 @@ const Home = ({ match, callLoading, is_loading }: any) => {
           }`,
           ""
         );
-        
+
         queryCli.setQueryData(["dev"], data);
       };
 
       getRouteFromApi();
-      callLoading(false); // set the loading state back to false
     } catch (err) {
       throw new Error(err);
     }
@@ -87,12 +87,9 @@ const Home = ({ match, callLoading, is_loading }: any) => {
   return (
     <>
       <div className="trendings-page">
-        {console.log("???????????????????",is_loading)}
         <div className="card-wrapper">
-          
           <Card {...match}>
-
-            {(isLoading) && (
+            {isLoading && (
               <div className="loading">
                 <section className="on-success-is-loading-state">
                   Loading
@@ -100,13 +97,13 @@ const Home = ({ match, callLoading, is_loading }: any) => {
               </div>
             )}
 
-            {(isSuccess && !is_loading) &&
+            {isSuccess &&
               !match.path.includes(DEVELOPERS) &&
               data?.map((item: any, index: any) => (
                 <ListCardRepository {...item} key={index} />
               ))}
 
-            {(isSuccess && !is_loading) &&
+            {isSuccess &&
               match.path.includes(DEVELOPERS) &&
               data?.map((item: any, index: any) => (
                 <ListCardDevelopers {...item} key={index} />
@@ -124,19 +121,4 @@ const Home = ({ match, callLoading, is_loading }: any) => {
   );
 };
 
-// isLoading
-
-const mapStateToProps = (state: any) => {
-  
-  return {
-    is_loading: state.enumReducer?.is_loading,
-  };
-};
-
-const mapDispatchToProps = (dispatch: any) => {
-  return {
-    callLoading: (payload:boolean) => dispatch(isLoading(payload)),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default Home;

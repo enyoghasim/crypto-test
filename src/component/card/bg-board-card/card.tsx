@@ -7,25 +7,22 @@ import { getEnums } from "../../../page/home/redux/thunk";
 import { HOME_ROUTE, DEVELOPERS } from "../../../routes/constant";
 import spokenLanguages from "../../../api.service/spoken_languages";
 import "./card.css";
-import { isLoading } from "../../../page/home/redux/action";
 
 const Card = (props: any) => {
-  const { callLoading, is_loading } = props;
   const useQueryParams = () => {
     return new URLSearchParams(useLocation().search);
   };
   const query = useQueryParams();
   useEffect(() => {
     const fetcher = async () => {
-      callLoading(true);
       await props?.fetchEnums();
     };
     fetcher();
-    callLoading(false);
   }, []);
 
   return (
     <>
+    {/* the big card-component  */}
       <div className="card-container">
         <div className="card-header">
           <nav className="left-flex">
@@ -132,17 +129,19 @@ const Card = (props: any) => {
     </>
   );
 };
+
+
 const mapStateToProps = (state: any) => {
   return {
     getAllEnums: state.enumReducer?.enums,
-    is_loading: state.enumReducer?.is_loading,
   };
 };
 
+
+// used redux thunk for the api-call here to get enums
 const mapDispatchToProps = (dispatch: any) => {
   return {
     fetchEnums: () => dispatch(getEnums()),
-    callLoading: (payload: boolean) => dispatch(isLoading(payload)),
   };
 };
 

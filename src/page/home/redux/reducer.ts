@@ -1,17 +1,13 @@
-import { SET_ALLOWED_ENUMS, SET_LOADING } from "./types";
+import { SET_ALLOWED_ENUMS } from "./types";
 
 const INITIAL_STATE = {
-  enums: {},
-  is_loading: false,
+  enums: {}
 };
 
 const reducer = (state = INITIAL_STATE, action: any) => {
   switch (action.type) {
     case SET_ALLOWED_ENUMS:
       return { ...state, enums: { ...action.enums } };
-
-    case SET_LOADING:
-      return { ...state, is_loading: action.is_loading };
     default:
       return state;
   }

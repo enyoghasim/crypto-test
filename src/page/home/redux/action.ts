@@ -1,4 +1,4 @@
-import { SET_ALLOWED_ENUMS, SET_LOADING } from "./types";
+import { SET_ALLOWED_ENUMS } from "./types";
 
 export const setEnums = (enums: any) => {
   return {
@@ -7,9 +7,4 @@ export const setEnums = (enums: any) => {
   };
 };
 
-export const isLoading = (is_loading:any) => {
-  return {
-    type: SET_LOADING,
-    is_loading
-  };
-};
+
