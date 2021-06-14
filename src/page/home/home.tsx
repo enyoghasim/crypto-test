@@ -46,10 +46,8 @@ const Home = ({ match }: any) => {
   );
 
   useEffect(() => {
-    // queryCli.invalidateQueries("dev");
     try {
       const func = async () => {
-        // const data = await apiFunction();
         const { data } = await request(
           "GET",
           `${
@@ -64,7 +62,6 @@ const Home = ({ match }: any) => {
           ""
         );
         queryCli.setQueryData(["dev"], data);
-        console.log(data);
       };
       func();
     } catch (err) {

@@ -64,7 +64,7 @@ const Dropdown = (props: any) => {
                             props.path.includes(DEVELOPERS)
                               ? `/developers${
                                   props.proLang === "Any" || undefined
-                                    ? ""
+                                    ? `/${item}`
                                     : `/${item}`
                                 }?${
                                   props.time === "Any" || undefined
