@@ -2,8 +2,8 @@ import axios, { Method, AxiosResponse } from "axios";
 
 const config = {
   headers: {
-    "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+    "Access-Control-Allow-Origin": "*", // allow cors from all origin
+    "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS", // allowed verbs
     "Content-Type": "application/json"
   }
 };

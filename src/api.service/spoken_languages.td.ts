@@ -1,4 +1,4 @@
-export interface spokenLanguage{
+export type spokenLanguage = {
     urlParam: string,
     name: string
 }

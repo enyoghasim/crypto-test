@@ -8,6 +8,7 @@
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
   text-align: left;
+  border-top: 1px solid #21262d;
 }
 
 .octicon {
@@ -15,6 +16,15 @@
   overflow: visible;
   vertical-align: text-bottom;
   fill: currentColor;
+  
+}
+
+.octicon-heart{
+  color: #e25bdc;
+}
+
+.octicon-flame{
+  color: #fe9600;
 }
 
 /* btn class for the link tag */
@@ -60,8 +70,11 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  color: var(--anchor-txt-color);
   text-decoration: none;
+}
+
+.repository-name{
+  color: var(--anchor-txt-color);
 }
 
 .mr-1 {

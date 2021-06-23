@@ -4,7 +4,7 @@ const INITIAL_STATE = {
   enums: {}
 };
 
-const enumReducer = (state = INITIAL_STATE, action: any) => {
+const reducer = (state = INITIAL_STATE, action: any) => {
   switch (action.type) {
     case SET_ALLOWED_ENUMS:
       return { ...state, enums: { ...action.enums } };
@@ -13,4 +13,4 @@ const enumReducer = (state = INITIAL_STATE, action: any) => {
   }
 };
 
-export default enumReducer;
+export default reducer;
